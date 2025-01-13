@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto !important;
+}
+
+.w-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bg-gif {
+  background-image: url("https://i.pinimg.com/originals/f9/a8/ed/f9a8ed161524ca06e0d5250fe2d33e51.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+
+.three-d-effect {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.bg-img {
+  background-image: url("./assets/yellow_gradient_variant_1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-img-2 {
+  background-image: url("./assets/yellow_gradient_variant_3.png");
+  /* background-image: url("https://www.careem.com/images/background-with-sides-clipped.png"); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-blogs {
+  /* background-image: url("https://www.careem.com/images/bg-cliped-our-blog.png"); */
+  background-image: url("./assets/yellow_gradient_variant_2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-stats-count {
+  background-image: url("./assets/yellow_gradient_variant_1.png");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .bg-stats-count {
+  background-image: url("./assets/yellow_gradient_variant_1.png");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+} */
