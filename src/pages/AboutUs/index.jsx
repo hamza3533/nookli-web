@@ -53,7 +53,7 @@ export default function index() {
       </section> */}
       <section className="w-container">
         <h2 className="benefits-title w-full font-bold mb-4 md:mb-8 text-2xl sm:text-3xl md:text-4xl text-center">
-          Captain Benefits
+          Community Benefits
         </h2>
 
         <div className="card-container w-full m-auto">
@@ -67,10 +67,12 @@ export default function index() {
                 />
               </div>
               <div className="card-content">
-                <h3 className="card-title text-2xl font-semibold">Earnings</h3>
+                <h3 className="card-title text-2xl font-semibold">
+                  Networking and Collaboration
+                </h3>
                 <p className="card-description mt-2 text-base font-medium leading-6">
-                  Be your own boss by earning at your own convenience. Take
-                  advantage of peak hours, bonuses, and guarantees.
+                  Connect with professionals, gain mentorship, and explore
+                  collaboration opportunities to grow your career and knowledge.
                 </p>
               </div>
             </div>
@@ -85,11 +87,11 @@ export default function index() {
               </div>
               <div className="card-content">
                 <h3 className="card-title text-2xl font-semibold">
-                  Captain Club
+                  Access to Resources and Opportunities{" "}
                 </h3>
                 <p className="card-description mt-2 text-base font-medium leading-6">
-                  Nookli offers benefits and rewards to its loyal captains based
-                  on which tier they are in.
+                  Access workshops, webinars, tools, and exclusive opportunities
+                  like job postings and hackathons to boost your career.
                 </p>
               </div>
             </div>
@@ -104,11 +106,11 @@ export default function index() {
               </div>
               <div className="card-content">
                 <h3 className="card-title text-2xl font-semibold">
-                  Flexibility
+                  Skill Development and Knowledge Sharing
                 </h3>
                 <p className="card-description mt-2 text-base font-medium leading-6">
-                  With Careem, you can enjoy the flexibility of choosing your
-                  working hours and days.
+                  Learn from experts, enhance your skills, and share knowledge
+                  to stay updated and build your expertise.
                 </p>
               </div>
             </div>
@@ -123,10 +125,10 @@ export default function index() {
               className="min-w-[350px] flex flex-col-reverse justify-center border-solid border-r sm:border-r-2 lg:border-r-4 last:border-0 sm:h-44 px-4"
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
-                Rides
+                Community Members
               </h2>
               <span className="text-5xl sm:text-6xl md:text-7xl font-bold">
-                1Bn
+                300k+
               </span>
             </div>
             <div
@@ -134,10 +136,10 @@ export default function index() {
               className="min-w-[350px] flex flex-col-reverse justify-center border-solid border-r sm:border-r-2 lg:border-r-4 last:border-0 sm:h-44 px-4"
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
-                Captains
+                Workshops
               </h2>
               <span className="text-5xl sm:text-6xl md:text-7xl font-bold">
-                2M
+                40+
               </span>
             </div>
             <div
@@ -145,10 +147,10 @@ export default function index() {
               className="min-w-[350px] flex flex-col-reverse justify-center border-solid last:border-0 sm:h-44 px-4"
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
-                Cities
+                Universities
               </h2>
               <span className="text-5xl sm:text-6xl md:text-7xl font-bold">
-                100+
+                10+
               </span>
             </div>
           </div>
@@ -263,11 +265,10 @@ export default function index() {
             <div className="flex flex-col md:flex-row w-full items-center justify-between space-x-8">
               <div className="text-left flex-1 space-y-6 mx-auto px-4">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold px-4">
-                Your Learning Journey
+                  Your Learning Journey
                 </h2>
                 <p className="text-base sm:text-lg font-medium leading-6 px-4">
-                Turn learning into a journey that reveals your true potential.
-
+                  Turn learning into a journey that reveals your true potential.
                 </p>
                 <div className="flex w-fit flex-wrap">
                   <span className="mr-2 mb-2">
@@ -328,9 +329,6 @@ export default function index() {
       </div> */}
       <section className="w-container lg:mb-8 pb-0 border-0 my-5">
         <FAQSection />
-      </section>
-      <section className="w-container lg:mb-8 pb-0 border-0 my-5">
-        <FormComponent />
       </section>
     </div>
   );

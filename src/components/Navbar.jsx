@@ -42,7 +42,7 @@ const Navbar = () => {
               About Us
             </NavLink>
             {/* Services Dropdown */}
-            <div
+            {/* <div
               className="relative"
               onMouseEnter={() => setServicesDropdownOpen(true)}
               onMouseLeave={() => setServicesDropdownOpen(false)}
@@ -84,7 +84,7 @@ const Navbar = () => {
                   </NavLink>
                 </div>
               )}
-            </div>
+            </div> */}
             <NavLink
               to="/contact-us"
               className={({ isActive }) =>
@@ -158,7 +158,7 @@ const Navbar = () => {
             >
               About Us
             </NavLink>
-            <div>
+            {/* <div>
               <button
                 onClick={() =>
                   setServicesDropdownOpen(!isServicesDropdownOpen)
@@ -201,7 +201,7 @@ const Navbar = () => {
                   </NavLink>
                 </div>
               )}
-            </div>
+            </div> */}
             <NavLink
               to="/contact-us"
               className={({ isActive }) =>

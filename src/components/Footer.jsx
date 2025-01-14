@@ -89,23 +89,21 @@ const servicesLinks = [
 ];
 
 const partnersLinks = [
-  { text: "Corporate packages", url: "/" },
-  { text: "Restaurant delivery", url: "/" },
-  { text: "B2B delivery", url: "/" },
-  { text: "Pay merchant solutions", url: "/" },
-  { text: "Become a supplier", url: "/" },
+  { text: "Partner 1", url: "/" },
+  { text: "Partner 2", url: "/" },
+  { text: "Partner 3", url: "/" },
+  { text: "Partner 4", url: "/" },
 ];
 
 const teamLinks = [
   { text: "About us", url: "/about-us/" },
   { text: "Careers", url: "/careers" },
-  { text: "Explore open roles", url: "/" },
   { text: "Why Nookli", url: "/about-us" },
 ];
 
 const aboutLinks = [
   { text: "Our social impact", url: "/" },
-  { text: "Information security", url: "/" },
+  { text: "Privacy Policy", url: "/" },
   { text: "Blog", url: "/" },
 ];
 
