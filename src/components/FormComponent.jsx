@@ -105,7 +105,7 @@ export default function FormComponent() {
 
         <button
           type="submit"
-          className="w-full bg-yellow-400 text-white py-2 text-xl rounded hover:bg-yellow-600"
+          className="w-full bg-yellow-300 text-white py-2 text-xl rounded hover:bg-yellow-600"
         >
           Submit Application
         </button>

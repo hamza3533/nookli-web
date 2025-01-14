@@ -28,15 +28,13 @@ export default function ProfileCard() {
 
             {/* Content Section */}
             <div className="w-full flex flex-col px-2 lg:px-4">
-              <h3 className="text-2xl font-semibold mb-2">Careem: Chapter 3</h3>
+              <h3 className="text-2xl font-semibold mb-2">Nookli: Chapter 3</h3>
               <div className="card-description w-full leading-6 text-base font-medium text-gray-700 mb-6">
                 <p>
-                  Nearly 11 years ago, we started Careem with a desire to build
-                  something big and meaningful. On the one hand, the success of
-                  Careem and its impact on our ecosystem has exceeded our
-                  something big and meaningful. On the one hand, the success of
-                  Careem and its impact on our ecosystem has exceeded our
-                  wildest imaginations.
+                  Our mission is to provide an accessible, intuitive platform
+                  where learners, mentors, and educators unite, exchange
+                  knowledge, and support one another—making continuous growth
+                  and meaningful connections an everyday reality.
                 </p>
               </div>
               <button

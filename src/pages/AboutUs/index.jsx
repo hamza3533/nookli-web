@@ -88,7 +88,7 @@ export default function index() {
                   Captain Club
                 </h3>
                 <p className="card-description mt-2 text-base font-medium leading-6">
-                  Careem offers benefits and rewards to its loyal captains based
+                  Nookli offers benefits and rewards to its loyal captains based
                   on which tier they are in.
                 </p>
               </div>
@@ -192,6 +192,13 @@ export default function index() {
       <section className="w-container lg:mb-8 pb-0 border-0 my-4">
         <div className="max-w-6xl mx-auto flex items-center justify-center">
           <div className="flex flex-col md:flex-row w-full items-center justify-between space-x-8">
+            <div className="flex-1">
+              <img
+                src={img2}
+                alt="About Us"
+                className="w-full mx-auto max-w-[450px] h-[350px] object-cover rounded-3xl"
+              />
+            </div>
             <div className="text-left flex-1 space-y-6 mx-auto px-4">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold px-4">
                 Our Vision
@@ -212,26 +219,12 @@ export default function index() {
                 </span>
               </div>
             </div>
-            <div className="flex-1">
-              <img
-                src={img2}
-                alt="About Us"
-                className="w-full mx-auto max-w-[450px] h-[350px] object-cover rounded-3xl"
-              />
-            </div>
           </div>
         </div>
       </section>
       <section className="w-container lg:mb-8 pb-0 border-0 pt-4">
         <div className="max-w-6xl mx-auto flex items-center justify-center">
           <div className="flex flex-col md:flex-row w-full items-center justify-between space-x-8">
-            <div className="flex-1">
-              <img
-                src={img8}
-                alt="About Us"
-                className="w-full mx-auto max-w-[450px] h-[350px] object-cover rounded-3xl"
-              />
-            </div>
             <div className="text-left flex-1 space-y-6 mx-auto px-4">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold px-4">
                 Every Person’s Learning Journey is Unique
@@ -254,10 +247,17 @@ export default function index() {
                 </span>
               </div>
             </div>
+            <div className="flex-1">
+              <img
+                src={img8}
+                alt="About Us"
+                className="w-full mx-auto max-w-[450px] h-[350px] object-cover rounded-3xl"
+              />
+            </div>
           </div>
         </div>
       </section>
-      <div className="w-full bg-blogs py-16">
+      <div className="w-full bg-img-2 my-16 py-16">
         <section className="w-container lg:mb-8 pb-0 border-0 my-4">
           <div className="max-w-6xl mx-auto flex items-center justify-center">
             <div className="flex flex-col md:flex-row w-full items-center justify-between space-x-8">
@@ -289,9 +289,6 @@ export default function index() {
               </div>
             </div>
           </div>
-        </section>
-        <section className="w-container lg:mb-8 pb-0 border-0 contentWithImage scroll-mt-24 w-full py-16">
-          {/* <ProfileCard /> */}
         </section>
       </div>
       <section className="w-container lg:mb-8 pb-0 border-0 my-5">

@@ -10,7 +10,7 @@ import img6 from "../../assets/image6.png";
 import img7 from "../../assets/image7.png";
 import img8 from "../../assets/image8.png";
 import img9 from "../../assets/image9.png";
-import logo1 from "../../assets/logo2.svg";
+import logo1 from "../../assets/logo.svg";
 
 export default function Index() {
   const settings = {
@@ -99,7 +99,7 @@ export default function Index() {
           <div className="max-w-6xl mx-auto flex items-center justify-center">
             <div className="flex flex-col w-full items-center space-y-10 px-6">
               <h2 className="text-4xl sm:text-5xl md:text-8xl font-extrabold text-gray-900 drop-shadow-xl leading-tight">
-                nookli’s mission
+                Nookli’s mission
               </h2>
               <p className="text-xl sm:text-2xl md:text-5xl leading-loose text-gray-800 max-w-3xl text-center">
                 To

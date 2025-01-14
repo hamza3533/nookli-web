@@ -17,7 +17,8 @@ section {
 }
 
 .bg-gif {
-  background-image: url("https://i.pinimg.com/originals/f9/a8/ed/f9a8ed161524ca06e0d5250fe2d33e51.gif");
+  background-image: url("./assets//bg-for-logo.png");
+  /* background-image: url("https://i.pinimg.com/originals/f9/a8/ed/f9a8ed161524ca06e0d5250fe2d33e51.gif"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
