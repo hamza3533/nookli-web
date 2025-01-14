@@ -263,6 +263,41 @@ export default function index() {
             <div className="flex flex-col md:flex-row w-full items-center justify-between space-x-8">
               <div className="text-left flex-1 space-y-6 mx-auto px-4">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold px-4">
+                Your Learning Journey
+                </h2>
+                <p className="text-base sm:text-lg font-medium leading-6 px-4">
+                Turn learning into a journey that reveals your true potential.
+
+                </p>
+                <div className="flex w-fit flex-wrap">
+                  <span className="mr-2 mb-2">
+                    <a
+                      href="/en-AE/about-us/"
+                      className="btn-secondary btn-small text-yellow-500 bg-white px-4 py-2 border rounded-full hover:text-white hover:bg-yellow-500"
+                      title="Read more"
+                    >
+                      Read more
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div className="flex-1">
+                <img
+                  src={img3}
+                  alt="About Us"
+                  className="w-full mx-auto max-w-[450px] h-[350px] object-cover rounded-3xl"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      {/* <div className="w-full bg-img-2 my-16 py-16">
+        <section className="w-container lg:mb-8 pb-0 border-0 my-4">
+          <div className="max-w-6xl mx-auto flex items-center justify-center">
+            <div className="flex flex-col md:flex-row w-full items-center justify-between space-x-8">
+              <div className="text-left flex-1 space-y-6 mx-auto px-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold px-4">
                   Your Learning Journey
                 </h2>
                 <p className="text-base sm:text-lg font-medium leading-6 px-4">
@@ -290,7 +325,7 @@ export default function index() {
             </div>
           </div>
         </section>
-      </div>
+      </div> */}
       <section className="w-container lg:mb-8 pb-0 border-0 my-5">
         <FAQSection />
       </section>
