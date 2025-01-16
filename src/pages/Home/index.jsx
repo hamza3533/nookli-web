@@ -10,7 +10,7 @@ import img6 from "../../assets/image6.png";
 import img7 from "../../assets/image7.png";
 import img8 from "../../assets/image8.png";
 import img9 from "../../assets/image9.png";
-import logo1 from "../../assets/logo.svg";
+import logo1 from "../../assets/logo2.svg";
 
 export default function Index() {
   const settings = {

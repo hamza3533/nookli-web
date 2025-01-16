@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo222.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,9 +12,7 @@ const Footer = () => {
           <p className="text-sm">
             © {currentYear} NOOKLI. All rights reserved.
           </p>
-          <p className="text-sm">
-            Empowering personalized learning journeys
-          </p>
+          <p className="text-sm">Empowering personalized learning journeys</p>
         </div>
       </div>
     </footer>
