@@ -59,12 +59,13 @@ export default function index() {
 
         <div className="card-container w-full m-auto">
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="card px-4 my-5 text-center w-full bg-[#e2d35c] py-16 rounded-3xl">
+            <div className="card px-4 my-5 text-center w-full bg-gradient-to-br from-primary via-primaryHover to-backgroundAccent py-16 rounded-3xl">
               <div className="card-image flex justify-center items-center rounded-3xl mb-5 overflow-hidden">
                 <img
                   src="https://careem-public-web-media.imgix.net/Clock_10_83f67612b4.png"
                   alt="Earnings Icon"
                   loading="lazy"
+                  className="hue-rotate-30 brightness-95"
                 />
               </div>
               <div className="card-content">
@@ -78,12 +79,13 @@ export default function index() {
               </div>
             </div>
 
-            <div className="card px-4 my-5 text-center w-full bg-[#e2d35c] py-16 rounded-3xl">
+            <div className="card px-4 my-5 text-center w-full bg-gradient-to-br from-secondary via-secondaryHover to-backgroundAccent py-16 rounded-3xl">
               <div className="card-image flex justify-center items-center rounded-3xl mb-5 overflow-hidden">
                 <img
                   src="https://careem-public-web-media.imgix.net/Clock_9_206b2839b6.png"
                   alt="Captain Club Icon"
                   loading="lazy"
+                  className="hue-rotate-60 brightness-90"
                 />
               </div>
               <div className="card-content">
@@ -97,12 +99,13 @@ export default function index() {
               </div>
             </div>
 
-            <div className="card px-4 my-5 text-center w-full bg-[#e2d35c] py-16 rounded-3xl">
+            <div className="card px-4 my-5 text-center w-full bg-gradient-to-br from-textHighlight via-success to-backgroundAccent py-16 rounded-3xl">
               <div className="card-image flex justify-center items-center rounded-3xl mb-5 overflow-hidden">
                 <img
                   src="https://careem-public-web-media.imgix.net/Clock_3_bc58e267bd.png"
                   alt="Flexibility Icon"
                   loading="lazy"
+                  className="hue-rotate-90 brightness-95"
                 />
               </div>
               <div className="card-content">
@@ -118,17 +121,17 @@ export default function index() {
           </div>
         </div>
       </section>
-      <div className="w-full bg-stats-count mb-16 py-16">
+      <div className="w-full mb-16 py-16">
         <section className="w-container lg:mb-8 pb-0 border-0">
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
               align="center"
               className="min-w-[350px] flex flex-col-reverse justify-center border-solid border-r sm:border-r-2 lg:border-r-4 last:border-0 sm:h-44 px-4"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold bg-gradient-to-r from-primary via-secondary to-yellow-500 text-transparent bg-clip-text">
                 Community Members
               </h2>
-              <span className="text-5xl sm:text-6xl md:text-7xl font-bold">
+              <span className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-primary via-secondary to-yellow-500 text-transparent bg-clip-text">
                 300k+
               </span>
             </div>
@@ -136,10 +139,10 @@ export default function index() {
               align="center"
               className="min-w-[350px] flex flex-col-reverse justify-center border-solid border-r sm:border-r-2 lg:border-r-4 last:border-0 sm:h-44 px-4"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold bg-gradient-to-r from-secondary via-yellow-500 to-primary text-transparent bg-clip-text">
                 Workshops
               </h2>
-              <span className="text-5xl sm:text-6xl md:text-7xl font-bold">
+              <span className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-secondary via-yellow-500 to-primary text-transparent bg-clip-text">
                 40+
               </span>
             </div>
@@ -147,10 +150,10 @@ export default function index() {
               align="center"
               className="min-w-[350px] flex flex-col-reverse justify-center border-solid last:border-0 sm:h-44 px-4"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold bg-gradient-to-r from-yellow-500 via-primary to-secondary text-transparent bg-clip-text">
                 Universities
               </h2>
-              <span className="text-5xl sm:text-6xl md:text-7xl font-bold">
+              <span className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-yellow-500 via-primary to-secondary text-transparent bg-clip-text">
                 10+
               </span>
             </div>
