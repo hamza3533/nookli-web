@@ -66,13 +66,13 @@ export default function FormComponent() {
   return (
     <div className="mx-auto my-16 px-5 py-0 max-w-2xl">
       <form onSubmit={handleSubmit}>
-        <h2 className="w-full font-bold text-3xl mb-8 text-center lg:mb-12 lg:text-4xl lg:leading-10">
+        <h2 className="w-full font-bold text-3xl mb-8 text-center lg:mb-12 lg:text-4xl lg:leading-10 text-textPrimary">
           Join to contribute in Nookli's Vision
         </h2>
 
         {Object.keys(formData).map((field) => (
           <div key={field} className="mb-4">
-            <label className="block mb-2 capitalize" htmlFor={field}>
+            <label className="block mb-2 capitalize text-textPrimary" htmlFor={field}>
               {field
                 .replace(/([A-Z])/g, " $1")
                 .replace(/^./, (str) => str.toUpperCase())}
@@ -85,7 +85,7 @@ export default function FormComponent() {
                 placeholder={`Your ${field}`}
                 value={formData[field]}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border border-borderNeutral rounded bg-backgroundSecondary text-textPrimary placeholder-textSecondary focus:border-primary focus:outline-none"
               />
             ) : (
               <textarea
@@ -94,18 +94,18 @@ export default function FormComponent() {
                 placeholder="Your answer"
                 value={formData[field]}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border border-borderNeutral rounded bg-backgroundSecondary text-textPrimary placeholder-textSecondary focus:border-primary focus:outline-none"
               />
             )}
             {errors[field] && (
-              <p className="text-red-500 text-sm">{errors[field]}</p>
+              <p className="text-error text-sm">{errors[field]}</p>
             )}
           </div>
         ))}
 
         <button
           type="submit"
-          className="w-full bg-yellow-300 text-white py-2 text-xl rounded hover:bg-yellow-600"
+          className="w-full bg-primary text-textPrimary py-2 text-xl rounded hover:bg-primaryHover transition-colors duration-300 shadow-lg"
         >
           Submit Application
         </button>

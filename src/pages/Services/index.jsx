@@ -135,7 +135,7 @@ export default function index() {
                 <div className="flex w-fit flex-wrap">
                   <span className="mr-2 mb-2">
                     <a
-                      href="/en-AE/about-us/"
+                      href="/about-us"
                       className="btn-secondary btn-small text-yellow-500 bg-white px-4 py-2 border rounded-full hover:text-white hover:bg-yellow-500"
                       title="Read more"
                     >
@@ -163,7 +163,7 @@ export default function index() {
               </p>
                <div className="flex justify-center">
                 <a
-                  href="/en-AE/about-us/"
+                  href="/about-us"
                   className="btn-secondary text-white bg-yellow-500 px-6 py-3 text-lg font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition-all duration-300"
                   title="Read more"
                 >
@@ -203,7 +203,7 @@ export default function index() {
               </p>
                <div className="flex justify-center">
                 <a
-                  href="/en-AE/about-us/"
+                  href="/about-us"
                   className="btn-secondary text-white bg-yellow-500 px-6 py-3 text-lg font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition-all duration-300"
                   title="Read more"
                 >

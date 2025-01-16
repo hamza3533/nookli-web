@@ -12,16 +12,20 @@ import Footer from "./components/Footer.jsx";
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/signin" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-      </Routes>
-      <Footer />
+      <div className="min-h-screen bg-backgroundPrimary text-textPrimary">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/signin" element={<Login />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }

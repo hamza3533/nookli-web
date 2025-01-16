@@ -4,10 +4,10 @@ export default function Cards() {
   const cards = [1, 2, 3, 4]; // Dummy data to create 4 cards
 
   const cardColors = [
-    "bg-blue-500",
-    "bg-green-500",
-    "bg-purple-500",
-    "bg-yellow-500",
+    "bg-primary",
+    "bg-secondary", 
+    "bg-success",
+    "bg-textHighlight"
   ];
 
   return (
@@ -18,11 +18,11 @@ export default function Cards() {
           className={`${cardColors[index]} shadow-lg rounded-lg h-[450px] p-6 flex flex-col justify-between transform transition-all duration-300 hover:scale-105`}
         >
           <div>
-            <h2 className="text-xl font-bold mb-2 text-white">
+            <h2 className="text-xl font-bold mb-2 text-textPrimary">
               Card Title {index + 1}
             </h2>
-            <h3 className="text-lg text-gray-200 mb-4">Subtitle</h3>
-            <ul className="text-gray-100 space-y-2">
+            <h3 className="text-lg text-textSecondary mb-4">Subtitle</h3>
+            <ul className="text-textSecondary space-y-2">
               <li className="text-md">Point 1</li>
               <li className="text-md">Point 2</li>
               <li className="text-md">Point 3</li>
@@ -30,7 +30,7 @@ export default function Cards() {
             </ul>
           </div>
           <div className="flex justify-end">
-            <span className="text-white text-xl font-semibold">→</span>
+            <span className="text-textPrimary text-xl font-semibold">→</span>
           </div>
         </div>
       ))}

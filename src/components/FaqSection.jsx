@@ -13,22 +13,20 @@ export default function FaqSection() {
           key={index}
           className="mb-4 p-2 rounded-lg shadow-lg"
           sx={{
-            // bg yellow-300
-            backgroundColor: "#FEEBC8", // Light yellow background
-            // backgroundColor: "#DBEAFE", // Light blue background
-            "&:before": { display: "none" }, // Removes default MUI divider line
+            backgroundColor: "#2B2B2B", // Using backgroundSecondary from theme
+            "&:before": { display: "none" },
           }}
         >
           <AccordionSummary
-            expandIcon={<ExpandMore />}
-            className="hover:bg-[#FEEBC8] transition-all rounded-lg"
+            expandIcon={<ExpandMore sx={{ color: "#FFFFFF" }} />}
+            className="hover:bg-primaryHover transition-all rounded-lg"
           >
-            <Typography className="text-lg font-bold text-dark">
+            <Typography className="text-lg font-bold text-textPrimary">
               {item.question}
             </Typography>
           </AccordionSummary>
           <AccordionDetails className="px-5 py-4">
-            <Typography className="text-sm text-gray-600">
+            <Typography className="text-sm text-textSecondary">
               {item.answer}
             </Typography>
           </AccordionDetails>
@@ -42,10 +40,10 @@ export default function FaqSection() {
       id="accordian-top-questions"
       className="faq mb-12 lg:mb-20 lg:mt-28 sm:mt-10"
     >
-      <div className="main-content max-w-full w-full container-xl py-16 lg:py-24 lg:rounded-3xl lg:px-0 bg-[#FEEBC8]">
+      <div className="main-content max-w-full w-full container-xl py-16 lg:py-24 lg:rounded-3xl lg:px-0 bg-backgroundSecondary">
         <div className="max-w-full w-full overflow-hidden px-5 lg:px-0 lg:container">
           <div>
-            <h2 className="w-full font-bold text-xl text-center mb-8 lg:mb-16 lg:text-4xl lg:leading-10">
+            <h2 className="w-full font-bold text-xl text-center mb-8 lg:mb-16 lg:text-4xl lg:leading-10 text-textPrimary">
               Top Questions
             </h2>
           </div>
@@ -56,31 +54,30 @@ export default function FaqSection() {
   );
 }
 
-
 const faqData = [
   {
-    question: "What is ATOM?",
+    question: "What is NOOKLI?",
     answer:
-      "ATOM is an AI-powered platform designed to streamline workflows, enhance productivity, and enable smarter decision-making for businesses and individuals.",
+      "NOOKLI is an AI-powered platform designed to personalize and enhance your learning journey, making education more effective and tailored to your individual needs.",
   },
   {
-    question: "How do I get started with ATOM?",
+    question: "How do I get started with NOOKLI?",
     answer:
-      "To get started, sign up on our website or app with your email and create a secure password. Once registered, follow the onboarding guide to set up your preferences and explore the platform’s features.",
+      "To get started, simply sign up on our website with your email and create a secure password. Once registered, you'll be guided through our onboarding process to customize your learning experience.",
   },
   {
-    question: "Can ATOM be customized for my business?",
+    question: "Can NOOKLI adapt to my learning style?",
     answer:
-      "Yes, ATOM is designed to be flexible and customizable. You can configure it to meet your business's unique needs and integrate it with your existing tools.",
+      "Yes, NOOKLI is designed to be adaptive and personalized. Our AI technology learns from your interactions and adjusts to your unique learning style and pace.",
   },
   {
-    question: "Is my data secure with ATOM?",
+    question: "Is my data secure with NOOKLI?",
     answer:
-      "Absolutely! ATOM uses advanced encryption and follows industry-standard security practices to ensure your data is safe and private.",
+      "Absolutely! NOOKLI prioritizes your privacy and data security. We use advanced encryption and follow strict security protocols to protect your information.",
   },
   {
-    question: "What support options are available for ATOM users?",
+    question: "What support options are available for NOOKLI users?",
     answer:
-      "We offer 24/7 customer support through live chat, email, and a detailed Help Center to assist you with any questions or issues.",
+      "We provide comprehensive support through multiple channels including live chat, email support, and detailed documentation to ensure you have the best learning experience.",
   },
 ];

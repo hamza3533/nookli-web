@@ -17,15 +17,19 @@ section {
 }
 
 .bg-gif {
-  background-image: url("./assets//bg-for-logo.png");
-  /* background-image: url("https://i.pinimg.com/originals/f9/a8/ed/f9a8ed161524ca06e0d5250fe2d33e51.gif"); */
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url("./assets/image2.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
+  background-blend-mode: overlay;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
 
 .three-d-effect {
@@ -33,9 +37,10 @@ section {
 }
 
 .bg-img {
-  background-image: url("./assets/yellow_gradient_variant_1.png");
+  background-image: url("./assets/bg123.png");
   background-size: cover;
-  background-position: center;
+  background-position: top center;
+  margin-bottom: 16px;
   background-repeat: no-repeat;
   height: auto;
   display: flex;
@@ -45,10 +50,11 @@ section {
 }
 
 .bg-img-2 {
-  background-image: url("./assets/yellow_gradient_variant_3.png");
+  background-image: url("./assets/bg123.png");
   /* background-image: url("https://www.careem.com/images/background-with-sides-clipped.png"); */
   background-size: cover;
-  background-position: center;
+  background-position: top center;
+  margin-bottom: 16px;
   background-repeat: no-repeat;
   height: auto;
   display: flex;
@@ -59,9 +65,10 @@ section {
 
 .bg-blogs {
   /* background-image: url("https://www.careem.com/images/bg-cliped-our-blog.png"); */
-  background-image: url("./assets/yellow_gradient_variant_2.png");
+  background-image: url("./assets/bg-11.png");
   background-size: cover;
-  background-position: center;
+  background-position: top center;
+  margin-bottom: 16px;
   background-repeat: no-repeat;
   height: auto;
   display: flex;
@@ -71,7 +78,7 @@ section {
 }
 
 .bg-stats-count {
-  background-image: url("./assets/yellow_gradient_variant_1.png");
+  background-image: url("./assets/bg-11.png");
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;

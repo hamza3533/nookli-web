@@ -9,11 +9,11 @@ export default function ProfileCard() {
       {cards.map((card, index) => (
         <div
           key={index}
-          className="rounded-lg flex flex-col justify-between transform transition-all duration-300 hover:scale-105 p-4"
+          className="rounded-lg flex flex-col justify-between transform transition-all duration-300 hover:scale-105 p-4 bg-steelGray"
         >
           <NavLink
-            to="/careem-chapter-3"
-            title="Careem: Chapter 3"
+            to="/about-us"
+            title="Nookli: Chapter 3"
             className="card-link block"
           >
             {/* Image Section */}
@@ -28,8 +28,10 @@ export default function ProfileCard() {
 
             {/* Content Section */}
             <div className="w-full flex flex-col px-2 lg:px-4">
-              <h3 className="text-2xl font-semibold mb-2">Nookli: Chapter 3</h3>
-              <div className="card-description w-full leading-6 text-base font-medium text-gray-700 mb-6">
+              <h3 className="text-2xl font-semibold mb-2 text-electricBlue">
+                Nookli: Chapter 3
+              </h3>
+              <div className="card-description w-full leading-6 text-base font-medium text-brightWhite mb-6">
                 <p>
                   Our mission is to provide an accessible, intuitive platform
                   where learners, mentors, and educators unite, exchange
@@ -38,9 +40,9 @@ export default function ProfileCard() {
                 </p>
               </div>
               <button
-                to="/careem-chapter-3"
+                to="/about-us"
                 title="Read more"
-                className="btn max-w-max rtl:ml-auto text-yellow-500 hover:text-white font-medium px-4 py-2 rounded-full bg-white hover:bg-red-500"
+                className="btn max-w-max rtl:ml-auto text-brightWhite hover:text-brightWhite font-medium px-4 py-2 rounded-full bg-darkRed hover:bg-mutedRed"
               >
                 Read more
               </button>

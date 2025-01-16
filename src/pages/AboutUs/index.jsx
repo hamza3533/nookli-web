@@ -7,14 +7,15 @@ import img8 from "../../assets/image8.png";
 import img7 from "../../assets/image7.png";
 import img3 from "../../assets/image3.png";
 import img6 from "../../assets/image6.png";
+import { Link } from "react-router-dom";
 
 export default function index() {
   return (
     <div>
       <section
-        className="w-container relative py-16"
+        className="w-container relative py-16 rounded-3xl"
         style={{
-          background: `linear-gradient(to bottom, rgba(180, 179, 171, 0.64), rgba(175, 170, 112, 0.92)), url(${img6})`,
+          background: `linear-gradient(to bottom, rgba(43, 43, 43, 0.8), rgba(43, 43, 43, 0.9)), url(${img6})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -31,13 +32,13 @@ export default function index() {
               recommendations.{" "}
             </p>
             <div className="flex justify-center">
-              <a
-                href="/some-link"
-                className="btn-secondary btn-large text-yellow-500 bg-white px-6 py-3 text-lg font-semibold rounded-full shadow-md hover:text-white hover:bg-yellow-500 transition-all duration-300"
-                title="Read more"
+              <Link
+                to="/contact-us"
+                className="bg-primary text-textPrimary px-6 py-3 text-lg font-semibold rounded-full shadow-md hover:bg-primaryHover transition-all duration-300"
+                title="Contact Us"
               >
-                Read More
-              </a>
+                Contact Us
+              </Link>
             </div>
           </div>
         </div>
@@ -171,7 +172,7 @@ export default function index() {
                 <div className="flex w-fit flex-wrap">
                   <span className="mr-2 mb-2">
                     <a
-                      href="/en-AE/about-us/"
+                      href="/about-us"
                       className="btn-secondary btn-small text-yellow-500 bg-white px-4 py-2 border rounded-full hover:text-white hover:bg-yellow-500"
                       title="Read more"
                     >
@@ -212,7 +213,7 @@ export default function index() {
               <div className="flex w-fit flex-wrap">
                 <span className="mr-2 mb-2">
                   <a
-                    href="/en-AE/about-us/"
+                    href="/about-us"
                     className="btn-secondary btn-small text-yellow-500 bg-white px-4 py-2 border rounded-full hover:text-white hover:bg-yellow-500"
                     title="Read more"
                   >
@@ -240,7 +241,7 @@ export default function index() {
               <div className="flex w-fit flex-wrap">
                 <span className="mr-2 mb-2">
                   <a
-                    href="/en-AE/about-us/"
+                    href="/about-us"
                     className="btn-secondary btn-small text-yellow-500 bg-white px-4 py-2 border rounded-full hover:text-white hover:bg-yellow-500"
                     title="Read more"
                   >
@@ -259,22 +260,22 @@ export default function index() {
           </div>
         </div>
       </section>
-      <div className="w-full bg-img-2 my-16 py-16">
+      <div className="w-full bg-blogs my-16 py-16">
         <section className="w-container lg:mb-8 pb-0 border-0 my-4">
           <div className="max-w-6xl mx-auto flex items-center justify-center">
             <div className="flex flex-col md:flex-row w-full items-center justify-between space-x-8">
               <div className="text-left flex-1 space-y-6 mx-auto px-4">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold px-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold px-4 text-primary drop-shadow-lg">
                   Your Learning Journey
                 </h2>
-                <p className="text-base sm:text-lg font-medium leading-6 px-4">
+                <p className="text-base sm:text-lg font-medium leading-6 px-4 text-primary drop-shadow-lg">
                   Turn learning into a journey that reveals your true potential.
                 </p>
                 <div className="flex w-fit flex-wrap">
                   <span className="mr-2 mb-2">
                     <a
-                      href="/en-AE/about-us/"
-                      className="btn-secondary btn-small text-yellow-500 bg-white px-4 py-2 border rounded-full hover:text-white hover:bg-yellow-500"
+                      href="/about-us"
+                      className="bg-primary text-textPrimary px-4 py-2 border rounded-full hover:bg-primaryHover hover:text-textPrimary transition-all duration-300"
                       title="Read more"
                     >
                       Read more
@@ -307,7 +308,7 @@ export default function index() {
                 <div className="flex w-fit flex-wrap">
                   <span className="mr-2 mb-2">
                     <a
-                      href="/en-AE/about-us/"
+                      href="/about-us"
                       className="btn-secondary btn-small text-yellow-500 bg-white px-4 py-2 border rounded-full hover:text-white hover:bg-yellow-500"
                       title="Read more"
                     >
@@ -327,9 +328,10 @@ export default function index() {
           </div>
         </section>
       </div> */}
-      <section className="w-container lg:mb-8 pb-0 border-0 my-5">
+      {/* <section className="w-container lg:mb-8 pb-0 border-0 my-5">
         <FAQSection />
-      </section>
+      </section> */}
     </div>
   );
 }
+

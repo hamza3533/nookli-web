@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isServicesDropdownOpen, setServicesDropdownOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-lg">
+    <nav className="bg-primary shadow-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
@@ -23,8 +23,8 @@ const Navbar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "text-red-500 font-bold"
-                  : "text-gray-700 hover:text-gray-900"
+                  ? "text-textPrimary font-bold shadow-lg"
+                  : "text-textSecondary hover:text-textPrimary transition-colors duration-200"
               }
             >
               Home
@@ -33,8 +33,8 @@ const Navbar = () => {
               to="/about-us"
               className={({ isActive }) =>
                 isActive
-                  ? "text-red-500 font-bold"
-                  : "text-gray-700 hover:text-gray-900"
+                  ? "text-textPrimary font-bold shadow-lg"
+                  : "text-textSecondary hover:text-textPrimary transition-colors duration-200"
               }
             >
               About Us
@@ -45,17 +45,17 @@ const Navbar = () => {
               onMouseEnter={() => setServicesDropdownOpen(true)}
               onMouseLeave={() => setServicesDropdownOpen(false)}
             >
-              <button className="text-gray-700 hover:text-gray-900 focus:outline-none">
+              <button className="text-textSecondary hover:text-textPrimary focus:outline-none transition-colors duration-200">
                 Services
               </button>
               {isServicesDropdownOpen && (
-                <div className="absolute z-10 mt-2 w-48 bg-white shadow-lg rounded-lg">
+                <div className="absolute z-10 mt-2 w-48 bg-backgroundSecondary shadow-2xl rounded-lg">
                   <NavLink
                     to="/services/service1"
                     className={({ isActive }) =>
                       isActive
-                        ? "block px-4 py-2 text-red-500 font-bold"
-                        : "block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        ? "block px-4 py-2 text-textPrimary font-bold"
+                        : "block px-4 py-2 text-textSecondary hover:bg-primaryHover hover:text-textPrimary transition-colors duration-200"
                     }
                   >
                     Service 1
@@ -64,8 +64,8 @@ const Navbar = () => {
                     to="/services/service2"
                     className={({ isActive }) =>
                       isActive
-                        ? "block px-4 py-2 text-red-500 font-bold"
-                        : "block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        ? "block px-4 py-2 text-textPrimary font-bold"
+                        : "block px-4 py-2 text-textSecondary hover:bg-primaryHover hover:text-textPrimary transition-colors duration-200"
                     }
                   >
                     Service 2
@@ -74,8 +74,8 @@ const Navbar = () => {
                     to="/services/service3"
                     className={({ isActive }) =>
                       isActive
-                        ? "block px-4 py-2 text-red-500 font-bold"
-                        : "block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        ? "block px-4 py-2 text-textPrimary font-bold"
+                        : "block px-4 py-2 text-textSecondary hover:bg-primaryHover hover:text-textPrimary transition-colors duration-200"
                     }
                   >
                     Service 3
@@ -87,8 +87,8 @@ const Navbar = () => {
               to="/contact-us"
               className={({ isActive }) =>
                 isActive
-                  ? "text-red-500 font-bold"
-                  : "text-gray-700 hover:text-gray-900"
+                   ? "text-textPrimary font-bold shadow-lg"
+                  : "text-textSecondary hover:text-textPrimary transition-colors duration-200"
               }
             >
               Contact Us
@@ -97,7 +97,7 @@ const Navbar = () => {
             {/* Sign In Button */}
             <NavLink
               to="/signin"
-              className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-yellow-500"
+              className="bg-textPrimary text-primary font-bold px-6 py-2 rounded-md shadow-2xl hover:bg-transparent hover:text-textPrimary border-2 border-transparent hover:border-textPrimary transition-all duration-300"
             >
               Sign In
             </NavLink>
@@ -107,7 +107,7 @@ const Navbar = () => {
           <div className="lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-700 hover:text-gray-900 focus:outline-none"
+              className="text-textSecondary hover:text-textPrimary focus:outline-none transition-colors duration-200"
             >
               <svg
                 className="h-6 w-6"
@@ -140,8 +140,8 @@ const Navbar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "block text-red-500 font-bold"
-                  : "block text-gray-700 hover:text-gray-900"
+                  ? "block text-textPrimary font-bold shadow-lg"
+                  : "block text-textSecondary hover:text-textPrimary transition-colors duration-200"
               }
             >
               Home
@@ -150,8 +150,8 @@ const Navbar = () => {
               to="/about-us"
               className={({ isActive }) =>
                 isActive
-                  ? "block text-red-500 font-bold"
-                  : "block text-gray-700 hover:text-gray-900"
+                  ? "block text-textPrimary font-bold shadow-lg"
+                  : "block text-textSecondary hover:text-textPrimary transition-colors duration-200"
               }
             >
               About Us
@@ -161,7 +161,7 @@ const Navbar = () => {
                 onClick={() =>
                   setServicesDropdownOpen(!isServicesDropdownOpen)
                 }
-                className="block text-gray-700 hover:text-gray-900 w-full text-left"
+                className="block text-textSecondary hover:text-textPrimary w-full text-left transition-colors duration-200"
               >
                 Services
               </button>
@@ -171,8 +171,8 @@ const Navbar = () => {
                     to="/services/service1"
                     className={({ isActive }) =>
                       isActive
-                        ? "block text-red-500 font-bold px-4 py-2"
-                        : "block text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-md"
+                        ? "block text-textPrimary font-bold px-4 py-2"
+                        : "block text-textSecondary hover:bg-primaryHover hover:text-textPrimary px-4 py-2 rounded-md transition-colors duration-200"
                     }
                   >
                     Service 1
@@ -181,8 +181,8 @@ const Navbar = () => {
                     to="/services/service2"
                     className={({ isActive }) =>
                       isActive
-                        ? "block text-red-500 font-bold px-4 py-2"
-                        : "block text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-md"
+                        ? "block text-textPrimary font-bold px-4 py-2"
+                        : "block text-textSecondary hover:bg-primaryHover hover:text-textPrimary px-4 py-2 rounded-md transition-colors duration-200"
                     }
                   >
                     Service 2
@@ -191,8 +191,8 @@ const Navbar = () => {
                     to="/services/service3"
                     className={({ isActive }) =>
                       isActive
-                        ? "block text-red-500 font-bold px-4 py-2"
-                        : "block text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-md"
+                        ? "block text-textPrimary font-bold px-4 py-2"
+                        : "block text-textSecondary hover:bg-primaryHover hover:text-textPrimary px-4 py-2 rounded-md transition-colors duration-200"
                     }
                   >
                     Service 3
@@ -204,8 +204,8 @@ const Navbar = () => {
               to="/contact-us"
               className={({ isActive }) =>
                 isActive
-                  ? "block text-red-500 font-bold"
-                  : "block text-gray-700 hover:text-gray-900"
+                  ? "block text-textPrimary font-bold shadow-lg"
+                  : "block text-textSecondary hover:text-textPrimary transition-colors duration-200"
               }
             >
               Contact Us
