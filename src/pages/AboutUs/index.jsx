@@ -327,9 +327,9 @@ export default function index() {
           </div>
         </section>
       </div> */}
-      <section className="w-container lg:mb-8 pb-0 border-0 my-5">
+      {/* <section className="w-container lg:mb-8 pb-0 border-0 my-5">
         <FAQSection />
-      </section>
+      </section> */}
     </div>
   );
 }

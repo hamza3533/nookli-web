@@ -12,8 +12,8 @@ export default function ProfileCard() {
           className="rounded-lg flex flex-col justify-between transform transition-all duration-300 hover:scale-105 p-4"
         >
           <NavLink
-            to="/careem-chapter-3"
-            title="Careem: Chapter 3"
+            to="/about-us"
+            title="About Us"
             className="card-link block"
           >
             {/* Image Section */}
@@ -38,7 +38,7 @@ export default function ProfileCard() {
                 </p>
               </div>
               <button
-                to="/careem-chapter-3"
+                to="/"
                 title="Read more"
                 className="btn max-w-max rtl:ml-auto text-yellow-500 hover:text-white font-medium px-4 py-2 rounded-full bg-white hover:bg-red-500"
               >
