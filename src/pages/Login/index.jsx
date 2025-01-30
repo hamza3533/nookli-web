@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import logo from "../../assets/logo.svg";
 import supabase from "../../config/supabase.js";
 import useAuth from "../../config/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 export default function Index() {
   const user = useAuth(); // Get the current user
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleEmailLogin = async (email, password) => {
     const { user, error } = await supabase.auth.signInWithPassword({
@@ -28,36 +28,11 @@ export default function Index() {
   const handleGoogleLogin = async () => {
     const { user, session, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: {
-        redirectTo: window.location.origin + '/dashboard',
-      },
     });
     if (error) console.error(error);
+    else navigate("/dashboard");
+    console.log("Logged in with Google:", user);
   };
-//  const handleGoogleLogin = async () => {
-//     const { user: googleUser, session, error: googleError } = await supabase.auth.signInWithOAuth({
-//       provider: "google",
-//     });
-//     if (googleError) {
-//       console.error(googleError);
-//     } else {
-//       const { data, error: insertError } = await supabase
-//         .from('profiles')
-//         .insert([{ 
-//           id: googleUser.id, 
-//           email: googleUser.email, 
-//           username: googleUser.user_metadata?.username || '', 
-//           avatar_url: googleUser.user_metadata?.avatar_url || '', 
-//           created_at: new Date() 
-//         }]);
-//       if (insertError) {
-//         console.error("Error inserting profile:", insertError);
-//       } else {
-//         console.log("Profile inserted successfully:", data);
-//         navigate("/dashboard");
-//       }
-//     }
-//   };
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100 p-4">
