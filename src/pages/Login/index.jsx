@@ -31,6 +31,7 @@ export default function Index() {
     });
     if (error) console.error(error);
     else {
+      console.log(user,"consoled")
       alert("Logged In");
       const insertUserProfile = async (userData, avatarUrl, username) => {
         const { data, error } = await supabase
