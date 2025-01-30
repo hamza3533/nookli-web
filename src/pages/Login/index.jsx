@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import logo from "../../assets/logo.svg";
 import supabase from "../../config/supabase.js";
 import useAuth from "../../config/useAuth";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function Index() {
   const user = useAuth(); // Get the current user
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleEmailLogin = async (email, password) => {
     const { user, error } = await supabase.auth.signInWithPassword({
@@ -30,8 +30,37 @@ export default function Index() {
       provider: "google",
     });
     if (error) console.error(error);
-    else navigate("/dashboard");
-    console.log("Logged in with Google:", user);
+    else {
+      alert("Logged In");
+      const insertUserProfile = async (userData, avatarUrl, username) => {
+        const { data, error } = await supabase
+          .from('profiles')
+          .insert([
+            { 
+              id: userData.id, 
+              email: userData.email, 
+              avatar: avatarUrl, 
+              username: username, 
+              created_at: new Date() 
+            }
+          ]);
+
+        if (error) {
+          console.error('Error inserting user profile:', error);
+        } else {
+          console.log('User profile inserted:', data);
+        }
+      };
+
+      // Call the function after successful Google login
+      if (user) {
+        const avatarUrl = user.user_metadata.avatar_url || ''; // Assuming avatar URL is stored in user metadata
+        const username = user.user_metadata.username || user.email.split('@')[0]; // Default to email prefix if username is not available
+        await insertUserProfile(user, avatarUrl, username);
+      }
+      navigate("/dashboard");
+      console.log("Logged in with Google:", user);
+    }
   };
 
   return (
