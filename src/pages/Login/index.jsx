@@ -30,7 +30,7 @@ export default function Index() {
       provider: "google",
     });
     if (error) console.error(error);
-    else console.log("Logged in with Google:", user);
+    else console.log("Logged in with Google:", user, session);
 
     // else {
     //   console.log(user, "consoled");
