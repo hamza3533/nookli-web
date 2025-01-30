@@ -30,38 +30,39 @@ export default function Index() {
       provider: "google",
     });
     if (error) console.error(error);
-    else {
-      console.log(user,"consoled")
-      alert("Logged In");
-      const insertUserProfile = async (userData, avatarUrl, username) => {
-        const { data, error } = await supabase
-          .from('profiles')
-          .insert([
-            { 
-              id: userData.id, 
-              email: userData.email, 
-              avatar: avatarUrl, 
-              username: username, 
-              created_at: new Date() 
-            }
-          ]);
+    else console.log("Logged in with Google:", user);
 
-        if (error) {
-          console.error('Error inserting user profile:', error);
-        } else {
-          console.log('User profile inserted:', data);
-        }
-      };
+    // else {
+    //   console.log(user, "consoled");
+    //   const insertUserProfile = async (userData, avatarUrl, username) => {
+    //     const { data, error } = await supabase.from("profiles").insert([
+    //       {
+    //         id: userData.id,
+    //         email: userData.email,
+    //         avatar: avatarUrl,
+    //         username: username,
+    //         created_at: new Date(),
+    //       },
+    //     ]);
 
-      // Call the function after successful Google login
-      if (user) {
-        const avatarUrl = user.user_metadata.avatar_url || ''; // Assuming avatar URL is stored in user metadata
-        const username = user.user_metadata.username || user.email.split('@')[0]; // Default to email prefix if username is not available
-        await insertUserProfile(user, avatarUrl, username);
-      }
-      navigate("/dashboard");
-      console.log("Logged in with Google:", user);
-    }
+    //     if (error) {
+    //       console.error("Error inserting user profile:", error);
+    //     } else {
+    //       console.log("User profile inserted:", data);
+    //     }
+    //   };
+
+    //   // Call the function after successful Google login
+    //   if (user) {
+    //     const avatarUrl = user.user_metadata.avatar_url || ""; // Assuming avatar URL is stored in user metadata
+    //     const username =
+    //       user.user_metadata.username || user.email.split("@")[0]; // Default to email prefix if username is not available
+    //     await insertUserProfile(user, avatarUrl, username);
+    //   }
+    //   alert("Logged In");
+    //   navigate("/dashboard");
+    //   console.log("Logged in with Google:", user);
+    // }
   };
 
   return (
