@@ -1,68 +1,104 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.svg";
 import supabase from "../../config/supabase.js";
-import useAuth from "../../config/useAuth";
 import { useNavigate } from "react-router-dom";
 
 export default function Index() {
-  const user = useAuth(); // Get the current user
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleEmailLogin = async (email, password) => {
-    const { user, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+  // Fetch the current user on component mount
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    };
+
+    fetchUser();
+
+    // Listen for auth state changes (e.g., user logs in or out)
+    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+      const currentUser = session?.user || null;
+      setUser(currentUser);
+
+      if (event === "SIGNED_IN" && currentUser) {
+        // Assign default role (e.g., role_id = 3 for 'student')
+        const { error: roleError } = await supabase
+          .from("user_roles")
+          .insert([{ user_id: currentUser.id, role_id: 3 }]); // Use the correct role_id
+
+        if (roleError) {
+          console.error("Error assigning role:", roleError);
+        } else {
+          console.log("Default role assigned successfully");
+          navigate("/dashboard"); // Redirect to dashboard after login
+        }
+      }
     });
-    if (error) console.error(error);
-    else console.log("Logged in:", user);
+
+    // return () => authListener.unsubscribe();
+  }, [navigate]);
+
+  const handleEmailLogin = async (email, password) => {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      setError(error.message);
+      console.error(error);
+    } else {
+      setUser(data.user);
+      navigate("/dashboard"); // Redirect to dashboard after login
+    }
   };
 
   const handleEmailSignUp = async (email, password) => {
-    const { user, error } = await supabase.auth.signUp({ email, password });
-    if (error) console.error(error);
-    else console.log("Signed up:", user);
+    // Generate a default avatar URL (e.g., using DiceBear avatars)
+    const defaultAvatarUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(email)}`;
+
+    // Sign up the user
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          avatar_url: defaultAvatarUrl, // Store default avatar
+          full_name: "New User", // Static value
+          role: "student", // Static value (default role)
+        },
+      },
+    });
+
+    if (error) {
+      setError(error.message);
+      console.error(error);
+    } else {
+      setUser(data.user);
+      navigate("/dashboard"); // Redirect to dashboard after sign-up
+    }
   };
 
   const handleGoogleLogin = async () => {
-    const { user, session, error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
-    if (error) console.error(error);
-    else console.log("Logged in with Google:", user, session);
+    const { error } = await supabase.auth.signInWithOAuth({ provider: "google" });
 
-    // else {
-    //   console.log(user, "consoled");
-    //   const insertUserProfile = async (userData, avatarUrl, username) => {
-    //     const { data, error } = await supabase.from("profiles").insert([
-    //       {
-    //         id: userData.id,
-    //         email: userData.email,
-    //         avatar: avatarUrl,
-    //         username: username,
-    //         created_at: new Date(),
-    //       },
-    //     ]);
+    if (error) {
+      setError(error.message);
+      console.error("Error during Google login:", error);
+    }
+  };
 
-    //     if (error) {
-    //       console.error("Error inserting user profile:", error);
-    //     } else {
-    //       console.log("User profile inserted:", data);
-    //     }
-    //   };
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
 
-    //   // Call the function after successful Google login
-    //   if (user) {
-    //     const avatarUrl = user.user_metadata.avatar_url || ""; // Assuming avatar URL is stored in user metadata
-    //     const username =
-    //       user.user_metadata.username || user.email.split("@")[0]; // Default to email prefix if username is not available
-    //     await insertUserProfile(user, avatarUrl, username);
-    //   }
-    //   alert("Logged In");
-    //   navigate("/dashboard");
-    //   console.log("Logged in with Google:", user);
-    // }
+    if (error) {
+      setError(error.message);
+      console.error(error);
+    } else {
+      setUser(null);
+      navigate("/"); // Redirect to home page after logout
+    }
   };
 
   return (
@@ -76,7 +112,7 @@ export default function Index() {
           <div>
             <h2 className="text-xl font-bold mb-4">Welcome, {user.email}</h2>
             <button
-              onClick={() => supabase.auth.signOut()}
+              onClick={handleLogout}
               className="w-full bg-red-500 text-white py-2 text-xl rounded hover:bg-red-600"
             >
               Logout
@@ -84,6 +120,7 @@ export default function Index() {
           </div>
         ) : (
           <form>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
             <div className="mb-4">
               <label htmlFor="email" className="block mb-2 capitalize">
                 Email:
@@ -117,9 +154,17 @@ export default function Index() {
             <button
               type="button"
               onClick={() => handleEmailLogin(email, password)}
-              className="w-full bg-yellow-300 text-white py-2 text-xl rounded hover:bg-yellow-600 mb-4"
+              className="w-full bg-yellow-300 text-black py-2 text-xl rounded hover:bg-yellow-400 mb-4"
             >
               Sign In
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleEmailSignUp(email, password)}
+              className="w-full bg-blue-500 text-white py-2 text-xl rounded hover:bg-blue-600 mb-4"
+            >
+              Sign Up
             </button>
 
             <button
