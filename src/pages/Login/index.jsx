@@ -13,52 +13,82 @@ export default function Index() {
   // Fetch the current user on component mount
   useEffect(() => {
     const fetchUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
+      // Check local storage for a token
+      const token = localStorage.getItem("auth-token");
+
+      if (token) {
+        // Validate the token and fetch user data
+        const { data: { user }, error } = await supabase.auth.getUser();
+
+        if (error) {
+          console.error("Error validating token:", error);
+          localStorage.removeItem("auth-token"); // Remove invalid token
+        } else if (user) {
+          setUser(user);
+        }
+      }
     };
 
     fetchUser();
 
     // Listen for auth state changes (e.g., user logs in or out)
-    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
-      const currentUser = session?.user || null;
-      setUser(currentUser);
-
-      if (event === "SIGNED_IN" && currentUser) {
-        // Assign default role (e.g., role_id = 3 for 'student')
-        const { error: roleError } = await supabase
-          .from("user_roles")
-          .insert([{ user_id: currentUser.id, role_id: 3 }]); // Use the correct role_id
-
-        if (roleError) {
-          console.error("Error assigning role:", roleError);
-        } else {
-          console.log("Default role assigned successfully");
-          navigate("/dashboard"); // Redirect to dashboard after login
+      const { data: { subscription } } = supabase.auth.onAuthStateChange(
+        async (event, session) => {
+          const currentUser = session?.user || null;
+  
+          if (event === "SIGNED_IN" && currentUser) {
+            try {
+              // Assign default role (e.g., role_id = 3 for 'student')
+              const { error: roleError } = await supabase
+                .from("user_roles")
+                .insert([{ user_id: currentUser.id, role_id: 3 }]); // Use the correct role_id
+  
+              if (roleError) {
+                console.error("Error assigning role:", roleError);
+              } else {
+                console.log("Default role assigned successfully");
+                localStorage.setItem("auth-token", session.access_token); // Store token in local storage
+                navigate("/dashboard"); // Redirect to dashboard after login
+              }
+            } catch (error) {
+              console.error("Error during SIGNED_IN event:", error);
+            }
+          } else if (event === "SIGNED_OUT") {
+            localStorage.removeItem("auth-token"); // Remove token from local storage
+            navigate("/home"); // Redirect to home page after logout
+          }
         }
-      }
-    });
-
-    // return () => authListener.unsubscribe();
+      );
+  
+      // Cleanup function
+      return () => {
+        if (subscription) {
+          subscription.unsubscribe(); // Correctly unsubscribe
+        }
+      };
   }, [navigate]);
 
   const handleEmailLogin = async (email, password) => {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
     if (error) {
       setError(error.message);
       console.error(error);
     } else {
       setUser(data.user);
-      navigate("/dashboard"); // Redirect to dashboard after login
+      localStorage.setItem("auth-token", data.session.access_token); // Store token in local storage
+      navigate("/student/dashboard"); // Redirect to dashboard after login
     }
   };
 
   const handleEmailSignUp = async (email, password) => {
-    // Generate a default avatar URL (e.g., using DiceBear avatars)
-    const defaultAvatarUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(email)}`;
+    const defaultAvatarUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(
+      email
+    )}`;
 
-    // Sign up the user
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -76,12 +106,15 @@ export default function Index() {
       console.error(error);
     } else {
       setUser(data.user);
-      navigate("/dashboard"); // Redirect to dashboard after sign-up
+      localStorage.setItem("auth-token", data.session.access_token); // Store token in local storage
+      navigate("/student/dashboard"); // Redirect to dashboard after sign-up
     }
   };
 
   const handleGoogleLogin = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({ provider: "google" });
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
 
     if (error) {
       setError(error.message);
@@ -97,7 +130,8 @@ export default function Index() {
       console.error(error);
     } else {
       setUser(null);
-      navigate("/"); // Redirect to home page after logout
+      localStorage.removeItem("auth-token"); // Remove token from local storage
+      navigate("/home"); // Redirect to home page after logout
     }
   };
 
@@ -109,15 +143,7 @@ export default function Index() {
         </div>
 
         {user ? (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Welcome, {user.email}</h2>
-            <button
-              onClick={handleLogout}
-              className="w-full bg-red-500 text-white py-2 text-xl rounded hover:bg-red-600"
-            >
-              Logout
-            </button>
-          </div>
+         navigate("/student/dashboard")
         ) : (
           <form>
             {error && <p className="text-red-500 mb-4">{error}</p>}

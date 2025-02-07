@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
 
-const Navbar = () => {
+const PublicNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setServicesDropdownOpen] = useState(false);
 
@@ -219,4 +219,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default PublicNavbar;

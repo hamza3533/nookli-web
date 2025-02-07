@@ -1,23 +1,49 @@
-import { useEffect, useState } from 'react';
-import supabase from './supabase';
+import { useEffect, useState } from "react";
+import supabase from "../config/supabase";
 
-const useAuth = () => {
+export default function useAuth() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Subscribe to the authentication state changes
-    const { data: subscription } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user || null);
+    const fetchUser = async () => {
+      try {
+        const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+        if (userError) throw userError;
+
+        if (user) {
+          const { data: profile, error: profileError } = await supabase
+            .from("profiles")
+            .select("role")
+            .eq("id", user.id)
+            .single();
+
+          if (profileError) throw profileError;
+
+          if (profile) {
+            setUser({ ...user, role: profile.role });
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+    fetchUser();
+
+    // Listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      const currentUser = session?.user || null;
+      setUser(currentUser);
     });
 
-    // Cleanup the subscription when the component unmounts
-    // return () => {
-    //   // Supabase doesn't use removeListener, we just return from the effect to clean up the subscription
-    //   subscription?.unsubscribe();
-    // };
+    // Cleanup function
+    return () => {
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+    };
   }, []);
 
   return user;
-};
-
-export default useAuth;
+}
