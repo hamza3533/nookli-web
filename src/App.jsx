@@ -1,97 +1,128 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Home from "./pages/Home/index.jsx";
-import Login from "./pages/Login/index.jsx";
-import Services from "./pages/Services/index.jsx";
-import AboutUs from "./pages/AboutUs/index.jsx";
-import Careers from "./pages/Careers/index.jsx";
-import ContactUs from "./pages/ContactUs/index.jsx";
-import AdminDashboard from "./pages/Dashboard/AdminDashboard.jsx";
-import InstructorDashboard from "./pages/Dashboard/InstructorDashboard.jsx";
-import StudentDashboard from "./pages/Dashboard/StudentDashboard.jsx";
-import PublicNavbar from "./components/PublicNavbar.jsx";
-import DashboardNavbar from "./components/DashboardNavbar.jsx";
-import Footer from "./components/Footer.jsx";
-import useAuth from "./config/useAuth.js";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./auth/AuthProvider";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
-function ProtectedRoute({ element, user, requiredRole }) {
-  if (!user) {
-    return <Navigate to="/signin" />;
-  }
+// Layouts
+import PublicLayout from "./layouts/PublicLayout";
+import ProtectedLayout from "./layouts/ProtectedLayout";
 
-  if (requiredRole && user.role !== requiredRole) {
-    return <Navigate to="/unauthorized" />;
-  }
-
-  return element;
-}
+// Pages
+import Login from "./pages/Login/index";
+import Dashboard from "./pages/Dashboard/index";
+import Profile from "./pages/Profile/index";
+import Home from "./pages/Home/index";
+import Services from "./pages/Services/index";
+import AboutUs from "./pages/AboutUs/index";
+import Careers from "./pages/Careers/index";
+import ContactUs from "./pages/ContactUs/index";
+import NotFound from "./pages/NotFound";
 
 function App() {
-  const user = useAuth();
-
   return (
-    <Router>
-      {/* Conditionally render Navbar based on route */}
-      {!user ? <PublicNavbar /> : <DashboardNavbar />}
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route
+            path="/signin"
+            element={
+              <PublicLayout>
+                <Login />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <PublicLayout>
+                <Home />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/services"
+            element={
+              <PublicLayout>
+                <Services />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/about-us"
+            element={
+              <PublicLayout>
+                <AboutUs />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/careers"
+            element={
+              <PublicLayout>
+                <Careers />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/contact-us"
+            element={
+              <PublicLayout>
+                <ContactUs />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicLayout>
+                <Login />
+              </PublicLayout>
+            }
+          />
+          {/* <Route
+            path="/signup"
+            element={
+              <PublicLayout>
+                <Signup />
+              </PublicLayout>
+            }
+          /> */}
 
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/signin" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/contact-us" element={<ContactUs />} />
+          {/* Protected Routes */}
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <ProtectedLayout>
+                  <Dashboard />
+                </ProtectedLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProtectedLayout>
+                  <Profile />
+                </ProtectedLayout>
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Role-Specific Routes (Protected) */}
-        <Route
-          path="/admin/dashboard"
-          element={
-            <ProtectedRoute
-              element={<AdminDashboard />}
-              user={user}
-              requiredRole="admin"
-            />
-          }
-        />
-        <Route
-          path="/instructor/dashboard"
-          element={
-            <ProtectedRoute
-              element={<InstructorDashboard />}
-              user={user}
-              requiredRole="instructor"
-            />
-          }
-        />
-        <Route
-          path="/student/dashboard"
-          element={
-            <ProtectedRoute
-              element={<StudentDashboard />}
-              user={user}
-              requiredRole="student"
-            />
-          }
-        />
-
-        {/* Unauthorized Page */}
-        <Route
-          path="/unauthorized"
-          element={
-            <div>
-              <h1>Unauthorized</h1>
-              <p>You do not have permission to access this page.</p>
-            </div>
-          }
-        />
-
-        {/* Fallback Route */}
-        <Route path="*" element={<Navigate to="/home" />} />
-      </Routes>
-
-      <Footer />
-    </Router>
+          {/* 404 Not Found */}
+          <Route
+            path="*"
+            element={
+              <ProtectedRoute>
+                <ProtectedLayout>
+                  <NotFound />
+                </ProtectedLayout>
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

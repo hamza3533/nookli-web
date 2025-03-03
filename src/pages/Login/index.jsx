@@ -48,7 +48,7 @@ export default function Index() {
               } else {
                 console.log("Default role assigned successfully");
                 localStorage.setItem("auth-token", session.access_token); // Store token in local storage
-                navigate("/dashboard"); // Redirect to dashboard after login
+                navigate("/"); // Redirect to dashboard after login
               }
             } catch (error) {
               console.error("Error during SIGNED_IN event:", error);
@@ -80,7 +80,7 @@ export default function Index() {
     } else {
       setUser(data.user);
       localStorage.setItem("auth-token", data.session.access_token); // Store token in local storage
-      navigate("/student/dashboard"); // Redirect to dashboard after login
+      navigate("/"); // Redirect to dashboard after login
     }
   };
 
@@ -107,7 +107,7 @@ export default function Index() {
     } else {
       setUser(data.user);
       localStorage.setItem("auth-token", data.session.access_token); // Store token in local storage
-      navigate("/student/dashboard"); // Redirect to dashboard after sign-up
+      navigate("/"); // Redirect to dashboard after sign-up
     }
   };
 
@@ -143,7 +143,7 @@ export default function Index() {
         </div>
 
         {user ? (
-         navigate("/student/dashboard")
+         navigate("/")
         ) : (
           <form>
             {error && <p className="text-red-500 mb-4">{error}</p>}
