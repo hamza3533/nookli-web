@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Home,
@@ -16,6 +16,19 @@ import supabase from "../config/supabase";
 const SideNavbar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const location = useLocation();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        setUser(user.user_metadata);
+      }
+    };
+    fetchUser();
+  }, []);
 
   const menuItems = [
     { name: "Home", icon: <Home />, path: "/" },
@@ -122,13 +135,17 @@ const SideNavbar = () => {
         {/* User Profile */}
         <div className="flex items-center gap-3 p-4 border-t">
           <img
-            src="https://i.pravatar.cc/40"
+            src={user?.avatar_url || "https://i.pravatar.cc/40"}
             alt="User Avatar"
             className="w-10 h-10 rounded-full"
           />
           <div className={`${isOpen ? "block" : "hidden"}`}>
-            <h4 className="text-sm font-semibold">Alex Smith</h4>
-            <p className="text-xs text-gray-500">Alexsmith12@gmail.com</p>
+            <h4 className="text-sm font-semibold">
+              {user?.full_name || "Alex Smith"}
+            </h4>
+            <p className="text-xs text-gray-500">
+              {user?.email || "Alexsmith12@gmail.com"}
+            </p>
           </div>
         </div>
       </div>
