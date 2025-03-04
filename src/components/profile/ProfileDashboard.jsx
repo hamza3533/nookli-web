@@ -56,17 +56,16 @@ const lessonsData = [
 const ProfileDashboard = () => {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      {/* Two-column layout (Left: 60%, Right: 40%) */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mt-6">
-        {/* Left Column (60%) */}
-        <div className="md:col-span-3 space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        {/* Left Column (75%) */}
+        <div className="md:col-span-9 space-y-6">
           <ProfileHeader user={userData} />
           <AboutMe about="Passionate UI/UX designer and educator with over 5 years of experience in crafting intuitive digital experiences. I specialize in Figma, wireframing, and usability testing, helping students bridge the gap between design theory and real-world application. My goal is to empower learners with the skills they need to create user-friendly interfaces and excel in the design industry. 🚀" />
           <UpcomingTasks tasks={tasksData} />
         </div>
 
-        {/* Right Column (40%) */}
-        <div className="md:col-span-2 space-y-6">
+        {/* Right Column (25%) */}
+        <div className="md:col-span-3 space-y-6">
           <LearningSkills skills={skillsData} />
           <HomeworkTracker homeworkData={homeworkData} />
           <BookmarkedLessons lessons={lessonsData} />

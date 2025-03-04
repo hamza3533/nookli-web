@@ -40,15 +40,15 @@ const SideNavbar = () => {
       className={`h-screen bg-white border-r shadow-md transition-all duration-300
       ${isOpen ? "w-60" : "w-20"} flex flex-col`}
     >
-      {/* Toggle Button */}
-      <div className="p-4 flex justify-end">
-        <button onClick={() => setIsOpen(!isOpen)} className="text-gray-600">
+      <div className="flex items-center gap-3 mt-4">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={` px-6 py-1 
+          text-gray-700 transition-all duration-200 rounded-md
+          ${isOpen ? "justify-start" : "justify-center"}`}
+        >
           <Menu fontSize="large" />
         </button>
-      </div>
-
-      {/* Logo */}
-      <div className="px-6">
         <h1
           className={`text-xl font-bold text-gray-800 transition-all ${
             isOpen ? "block" : "hidden"
@@ -58,7 +58,6 @@ const SideNavbar = () => {
         </h1>
       </div>
 
-      {/* Menu Items */}
       <nav className="flex-1 mt-6">
         <ul>
           {menuItems.map((item, index) => (

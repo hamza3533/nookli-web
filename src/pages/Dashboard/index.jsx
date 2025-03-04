@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import supabase from '../../config/supabase';
+import React, { useEffect, useState } from "react";
+import supabase from "../../config/supabase";
 import {
   Table,
   TableBody,
@@ -10,7 +10,7 @@ import {
   Paper,
   Skeleton,
   Box,
-} from '@mui/material';
+} from "@mui/material";
 
 export default function Index() {
   const [users, setUsers] = useState([]);
@@ -19,19 +19,21 @@ export default function Index() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        console.log('Fetching users...');
+        console.log("Fetching users...");
         const { data: users, error } = await supabase
-          .from('profiles')
-          .select('id, email, full_name, avatar_url, role, created_at');
+          .from("profiles")
+          .select(
+            "id, email, full_name, avatar_url, role,role_type, created_at"
+          );
 
         if (error) {
-          console.error('Error fetching users:', error);
+          console.error("Error fetching users:", error);
         } else {
-          console.log('Users fetched:', users);
+          console.log("Users fetched:", users);
           setUsers(users);
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false); // Stop loading
       }
@@ -43,9 +45,9 @@ export default function Index() {
   return (
     <Box
       sx={{
-        height: 'calc(100vh - 100px)', // Minimum height
-        overflow: 'auto', // Enable scrolling
-        padding: '16px',
+        height: "calc(100vh - 100px)", // Minimum height
+        overflow: "auto", // Enable scrolling
+        padding: "16px",
       }}
     >
       <TableContainer component={Paper}>
@@ -56,61 +58,64 @@ export default function Index() {
               <TableCell>Email</TableCell>
               <TableCell>Full Name</TableCell>
               <TableCell>Avatar</TableCell>
-              <TableCell>Role</TableCell>
+              <TableCell>User</TableCell>
+              <TableCell>User Type</TableCell>
               <TableCell>Created At</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {loading ? (
-              // Show skeleton loading while data is being fetched
-              Array.from({ length: 5 }).map((_, index) => (
-                <TableRow key={index}>
-                  <TableCell>
-                    <Skeleton variant="text" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton variant="text" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton variant="text" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton variant="circular" width={40} height={40} />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton variant="text" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton variant="text" />
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              // Render actual data
-              users.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>{user.id}</TableCell>
-                  <TableCell>{user.email}</TableCell>
-                  <TableCell>{user.full_name}</TableCell>
-                  <TableCell>
-                    <Box
-                      component="img"
-                      src={user.avatar_url}
-                      alt="Avatar"
-                      sx={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: '50%',
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell>{user.role}</TableCell>
-                  <TableCell>
-                    {new Date(user.created_at).toLocaleString()}
-                  </TableCell>
-                </TableRow>
-              ))
-            )}
+            {loading
+              ? // Show skeleton loading while data is being fetched
+                Array.from({ length: 5 }).map((_, index) => (
+                  <TableRow key={index}>
+                    <TableCell>
+                      <Skeleton variant="text" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="circular" width={40} height={40} />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" />
+                    </TableCell>
+                  </TableRow>
+                ))
+              : // Render actual data
+                users.map((user) => (
+                  <TableRow key={user.id}>
+                    <TableCell>{user.id}</TableCell>
+                    <TableCell>{user.email}</TableCell>
+                    <TableCell>{user.full_name}</TableCell>
+                    <TableCell>
+                      <Box
+                        component="img"
+                        src={user.avatar_url}
+                        alt="Avatar"
+                        sx={{
+                          width: 40,
+                          height: 40,
+                          borderRadius: "50%",
+                        }}
+                      />
+                    </TableCell>
+                    <TableCell>{user.role}</TableCell>
+                    <TableCell>{user.role_type}</TableCell>
+                    <TableCell>
+                      {new Date(user.created_at).toLocaleString()}
+                    </TableCell>
+                  </TableRow>
+                ))}
           </TableBody>
         </Table>
       </TableContainer>
