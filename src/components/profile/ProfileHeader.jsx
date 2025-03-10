@@ -7,8 +7,12 @@ import {
   Edit,
 } from "@mui/icons-material";
 import supabase from "../../config/supabase";
+import EditProfileModal from "./EditProfileModal";
+import ChangePasswordModal from "./ChangePasswordModal";
 
 const ProfileHeader = ({ placeholderData }) => {
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const [coverImage, setCoverImage] = useState(null);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -61,15 +65,20 @@ const ProfileHeader = ({ placeholderData }) => {
       </div>
 
       <div className="relative flex items-center p-6">
-        <label className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md cursor-pointer">
+        <button
+          className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md cursor-pointer"
+          onClick={() => setEditModalOpen(true)}
+        >
           <Edit className="text-red-500" />
-        </label>
+        </button>
         <div className="absolute -top-16 left-6">
           {loading ? (
             <div className="w-32 h-32 rounded-full bg-gray-300 animate-pulse" />
           ) : (
             <img
-              src={user?.user_metadata.avatar_url || placeholderData.avatar_url}
+              src={
+                user?.user_metadata?.avatar_url || placeholderData.avatar_url
+              }
               alt="Profile"
               className="w-32 h-32 rounded-full border-2 border-white shadow-md"
             />
@@ -81,7 +90,7 @@ const ProfileHeader = ({ placeholderData }) => {
             {loading ? (
               <div className="w-32 h-5 bg-gray-300 animate-pulse" />
             ) : (
-              user?.user_metadata.full_name || placeholderData.full_name
+              user?.user_metadata?.full_name || placeholderData.full_name
             )}
           </h2>
           <p className="text-gray-500 text-sm">
@@ -118,12 +127,27 @@ const ProfileHeader = ({ placeholderData }) => {
             <p className="text-gray-600 flex items-center gap-2 text-sm">
               <Lock className="text-red-500 mb-3" /> **********
             </p>
-            <button className="mb-1 px-4 py-2 text-sm bg-gray-800 text-white rounded-lg shadow-md">
+            <button
+              className="mb-1 px-4 py-2 text-sm bg-gray-800 text-white rounded-lg shadow-md"
+              onClick={() => setPasswordModalOpen(true)}
+            >
               Change Password
             </button>
           </div>
         </div>
       </div>
+      {editModalOpen && (
+        <EditProfileModal
+          open={editModalOpen}
+          onClose={() => setEditModalOpen(false)}
+          user={user}
+          placeholderData={placeholderData}
+        />
+      )}
+      {/* <ChangePasswordModal
+        open={passwordModalOpen}
+        onClose={() => setPasswordModalOpen(false)}
+      /> */}
     </div>
   );
 };

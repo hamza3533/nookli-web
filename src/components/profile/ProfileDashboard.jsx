@@ -59,6 +59,12 @@ const tasksData = [
     grade: "C+",
     startDate: "Feb 1, 2024",
   },
+  {
+    name: " UI Design Essentials",
+    progress: 85,
+    grade: "B",
+    startDate: "Jan 10, 2024",
+  },
 ];
 
 const lessonsData = [
