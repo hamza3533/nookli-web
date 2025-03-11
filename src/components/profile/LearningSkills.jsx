@@ -10,13 +10,13 @@ const LearningSkills = ({ skills }) => {
         setAnimatedProgress((prevProgress) => {
           const newProgress = [...prevProgress];
           if (newProgress[index] < skill.progress) {
-            newProgress[index] += 2; // Increment speed (adjust if needed)
+            newProgress[index] += 2;
           } else {
             clearInterval(intervals[index]);
           }
           return newProgress;
         });
-      }, 30); // Interval time (smoother animation)
+      }, 30);
     });
 
     return () => intervals.forEach(clearInterval);
@@ -26,7 +26,7 @@ const LearningSkills = ({ skills }) => {
     <div className="bg-white shadow-md rounded-lg p-4 border border-blue-300">
       <h3 className="text-lg font-bold mb-3 text-gray-800">Learning Skills</h3>
       {skills?.map((skill, index) => (
-        <div key={skill.name} className="mb-3 flex items-center">
+        <div key={skill.name} className="mb-5 flex items-center">
           <div className="flex-1">
             <div className="flex justify-between text-sm text-gray-800 font-medium">
               <p>
@@ -39,7 +39,7 @@ const LearningSkills = ({ skills }) => {
               variant="determinate"
               //   value={skill.progress}
               value={animatedProgress[index]}
-              className="h-2"
+              className="h-2 m-1"
               sx={{
                 "& .MuiLinearProgress-bar": {
                   backgroundColor: "#ef4444",
