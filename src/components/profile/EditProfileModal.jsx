@@ -1,30 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
 } from "@mui/material";
-import { Cancel } from "@mui/icons-material";
+import { Cancel, PhotoCamera } from "@mui/icons-material";
 import supabase from "../../config/supabase";
 
 const EditProfileModal = ({ open, onClose, user, placeholderData }) => {
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
-    full_name: user.user_metadata?.full_name || placeholderData.full_name,
-    email: user.email || placeholderData.email,
-    bio: user.bio || placeholderData.bio,
-    location: user.location || placeholderData.location,
-    phone: user.phone || placeholderData.phone,
-    image: user.user_metadata?.avatar_url || placeholderData.image,
+    full_name: placeholderData.full_name,
+    email: placeholderData.email,
+    bio: placeholderData.bio,
+    location: placeholderData.location,
+    phone: placeholderData.phone,
+    image: placeholderData.image,
   });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("full_name, bio, location, phone, avatar_url")
+        .eq("id", user.id)
+        .single();
+
+      if (error || !data) {
+        console.error("Error fetching profile:", error?.message);
+      } else {
+        setFormData({
+          full_name: data.full_name || placeholderData.full_name,
+          bio: data.bio || placeholderData.bio,
+          location: data.location || placeholderData.location,
+          phone: data.phone || placeholderData.phone,
+          image: data.avatar_url || placeholderData.image,
+        });
+      }
+      setLoading(false);
+    };
+
+    if (user?.id) fetchProfile();
+  }, [user]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSave = async () => {
-    // use public . profile table
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("profiles")
       .update({
         full_name: formData.full_name,
@@ -38,10 +64,21 @@ const EditProfileModal = ({ open, onClose, user, placeholderData }) => {
     if (error) {
       alert("Error updating profile: " + error.message);
     }
-
-    // Close modal
     onClose();
   };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = async () => {
+      setFormData((prev) => ({ ...prev, image: reader.result }));
+    };
+    reader.readAsDataURL(file);
+  };
+
+  console.log("formData", formData);
 
   return (
     <Dialog
@@ -63,12 +100,34 @@ const EditProfileModal = ({ open, onClose, user, placeholderData }) => {
 
         {/* Content */}
         <DialogContent className="p-6">
-          <div className="flex flex-col items-center mb-6">
-            <img
-              src={formData.image}
-              alt="Profile"
-              className="w-24 h-24 rounded-full border border-gray-300"
-            />
+          <div className="flex flex-col items-center mb-6 relative">
+            {loading ? (
+              <div className="w-28 h-28 rounded-full border border-gray-300 bg-gray-200 animate-pulse" />
+            ) : (
+              <div className="relative group">
+                {/* Profile Image */}
+                <img
+                  src={formData.image}
+                  alt="Profile"
+                  className="w-28 h-28 rounded-full border border-gray-300 object-cover shadow-lg"
+                />
+
+                {/* Overlay Effect */}
+                <div className="absolute inset-0 bg-black bg-opacity-40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* Upload Icon */}
+                  <label className="cursor-pointer flex flex-col items-center">
+                    <PhotoCamera className="text-white w-8 h-8" />
+                    <span className="text-xs text-white mt-1">Upload</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleImageUpload}
+                    />
+                  </label>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="space-y-4">
